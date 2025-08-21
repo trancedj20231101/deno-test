@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "node",
   "main": "index.js",
+  "type": "module",
   "author": "trancedj2022",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:deno": "deno run --allow-read --allow-write --allow-env --allow-run index.js"
   },
   "engines": {
     "node": ">=14"
   }
 }
-  
