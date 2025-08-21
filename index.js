@@ -49,8 +49,15 @@ try {
 // create HTTP server
 const server = createServer(async (req, res) => {
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('Hello world!');
+    try {
+      const htmlContent = await Deno.readTextFile('./index.html');
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(htmlContent);
+    } catch (err) {
+      console.error(err);
+      res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Error loading HTML content');
+    }
   }
   // get-sub
   if (req.url === '/sub') {
